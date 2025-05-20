@@ -1,8 +1,8 @@
 export const PandaConfig = {
-    title: 'Panda Blog',
-    description: 'Panda Blog, a blog powered by Astro',
-    start: '2016',
-    site: 'https://astro-theme-panda.vercel.app/',
+    title: '果黑',
+    description: '没啥意义的记录',
+    start: '2006',
+    site: 'https://guohei.net/',
     defaultLocale: 'en',
     navbar: [
         // {title: 'Posts', url: '/'}, // auto generated
@@ -10,7 +10,7 @@ export const PandaConfig = {
     ],
     footer: [
         { title: 'rss', url: '/rss.xml/' },
-        { title: 'contact', url: 'https://github.com/yuhangch/astro-theme-panda/issues/new' },
-        { title: 'github', url: 'https://github.com/yuhangch/astro-theme-panda' }
+        { title: 'contact', url: 'https://github.com/guohei' },
+        { title: 'github', url: 'https://github.com/guohei' }
     ]
 }
