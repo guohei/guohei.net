@@ -15,7 +15,7 @@
         "@astrojs/rss": "latest",
         "@astrojs/sitemap": "latest",
         "@astrojs/ts-plugin": "latest",
-        "astro": "latest",
+        "astro": "5.7.13",
         "astro-expressive-code": "latest",
         "astro-i18n-aut": "latest",
         "astro-purgecss": "latest",
