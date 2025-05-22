@@ -1,15 +1,7 @@
-## A privacy-first, no-nonsense, super-fast astro blogging theme
+## 关于我
 
-**No trackers, a few javascript, few stylesheets**. and your words.
+一个自2006年开始活跃于互联网的中年人。
 
-Looks great on any device
-
-Tiny (~30kb), optimized, and awesome pages
-
-No trackers, ads, little scripts
-
-RSS feeds
-
-Publish something awesome with your panda hands 
-
-
+## 联系我
+Telegram: @guohei
+Telegram Channel: @guoheinet
