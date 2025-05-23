@@ -6,9 +6,6 @@ tags: ['废话']
 description: '第一篇博客'
 ---
 
-
-# Hello World!
-
 Welcome to my blog! This is my first post and I'm excited to share my thoughts and experiences with you.
 
 ## Why I Started This Blog
