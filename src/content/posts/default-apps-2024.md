@@ -11,6 +11,7 @@ categories: ['tech']
 - 📮Mail Server: Gmail / iCloud 
 - 📝Notes: [Obsidian](https://obsidian.md/) / Apple Notes / [Tot](https://tot.rocks/)
 - 📸Photo Management: iCloud / Google Photos
+- 📁 Cloud File Storage: NAS / iCloud
 - 📅Calendar: Apple Calendar
 - ⌨️ Launcher: [Raycast](https://raycast.com/)
 - 📷 iPhone Photo Shooting: iOS Camera / Pixel Camera
