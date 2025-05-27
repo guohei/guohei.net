@@ -24,7 +24,7 @@ categories: ['tech']
 - 💻Code Editor: VSCode / Sublime Text
 - 🖥️Terminal: Warp
 - 📸Photo Editing: Affinity Photo / Acorn
-- 🧠 AI API: [ChatGPT](https://chat.openai.com/) / [Claude](https://claude.ai/) / [Gemini](https://gemini.google.com/) / [XAI](https://gork.com/)
+- 🧠 AI API: [ChatGPT](https://chat.openai.com/) / [Claude](https://claude.ai/) / [Gemini](https://gemini.google.com/) / [XAI](https://x.ai/)
 - 🤖 AI Client: [ChatWise](https://chatwise.app/) / [Cherry Studio](https://github.com/CherryHQ/cherry-studio)
 - 🔎 Search: Google / DuckDuckGo
 - 🤦 Social Media: Twitter / Telegram / Wechat
