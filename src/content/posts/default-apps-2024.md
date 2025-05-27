@@ -1,5 +1,5 @@
 ---
-title: "2025年默认应用"
+title: "2025年我的默认应用"
 description: "2025年默认应用"
 pubDate: 2024-12-27
 tags: ['apps', '2024']
