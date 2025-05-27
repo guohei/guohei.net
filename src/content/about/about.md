@@ -4,10 +4,10 @@
 
 ## 联系我
 
-[Telegram](https://t.me/guohei)
+Telegram: @guohei
 
-[Telegram Channel](https://t.me/guoheinet)
+Telegram Channel: @guoheinet
 
-本站使用 [Astro](https://astro.build) 生成，部署在 [Cloudflare Pages](https://pages.cloudflare.com)上，使用的主题是[Panda](https://github.com/yuhangch/astro-theme-panda)。
+本站使用 Astro 生成，部署在Cloudflare Pages上，使用的主题是Panda。
 
 
