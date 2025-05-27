@@ -6,7 +6,6 @@ tags: ['mac', 'setup']
 categories: ['tech']
 ---
 Here’s everything I use on a Mac.
-
 ## Todos
 
 - Set up iCloud account.
@@ -61,7 +60,7 @@ Here’s everything I use on a Mac.
 
 ### A
 
-- [Acorn](https://flyingmeat.com/acorn/). 🎫
+- [Acorn](https://flyingmeat.com/acorn/). Image editing.🎫
 - [AirBattery](https://github.com/lihaoyun6/AirBattery). Get battery usage of all devices on Mac.🆓
 - [Affinity Photo 2](https://affinity.serif.com/en-us/photo/). 🎫
 - [Amphetamine](https://apps.apple.com/us/app/amphetamine/id937984704?mt=12). Keep the machine awake. `Cmd` + `Shift` + `A`: turn on/off 
