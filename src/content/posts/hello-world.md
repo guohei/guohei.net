@@ -3,6 +3,7 @@ title: Hello World!
 pubDate: 2025-05-20
 categories: ['废话']
 tags: ['废话']
+categories: ['随笔']
 description: '第一篇博客'
 ---
 
