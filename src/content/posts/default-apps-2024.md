@@ -17,7 +17,7 @@ categories: ['tech']
 - 🌐Browser: [Dia](https://www.diabrowser.com/) / Chrome / Safari 
 - 💬Chat: Wechat / Telegram / Discord
 - 🔖Bookmarks: [Humble New Tab Page](https://chromewebstore.google.com/detail/humble-new-tab-page/mfgdmpfihlmdekaclngibpjhdebndhdj) (Chrome Extension)
-- 📊Spreadsheets: Google Sheets
+- 📖Read it later: Telegram Saved Messages（Link to Saved Messages）
 - 🎵Music: Apple Music
 - 🎧Podcasts: Apple Podcasts
 - 🔒Password Management: Bitwarden
