@@ -1,0 +1,52 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { useLocale } from '@utils/locale'
+import { formatDateMD } from '@utils/format'
+
+const { path, t } = useLocale(Astro.url)
+
+// 获取所有笔记
+const allNotes = await Astro.glob('../content/notes/**/*.{md,mdx}')
+
+// 过滤并排序笔记
+const notes = allNotes
+    .filter(note => !note.frontmatter.draft)
+    .map(note => ({
+        ...note.frontmatter,
+        url: note.file.split('/').pop().replace(/\.mdx?$/, '') + '/'
+    }))
+    .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
+
+function getTitle(note) {
+    return note.title
+}
+
+export const prerender = true
+---
+
+<Layout title={t('nav.notes')}>
+    <main class="mt-8">
+        <h1 class="text-2xl sm:text-3xl font-bold text-heading mb-8">{t('nav.notes')}</h1>
+        
+        <div class="space-y-2">
+            {notes.map((note) => (
+                <article class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 py-2 hover:bg-gray-50/30 dark:hover:bg-stone-800/30 transition-all duration-200">
+                    <time class="text-sm text-secondary font-normal flex-shrink-0 sm:w-16">
+                        {formatDateMD(note.pubDate)}
+                    </time>
+                    <div class="flex-1 min-w-0">
+                        <a rel="prefetch-intent" href={path(`/notes/${note.url}`)} class="panda-link-static text-base font-normal hover:text-primary leading-relaxed">
+                            {getTitle(note)}
+                        </a>
+                    </div>
+                </article>
+            ))}
+        </div>
+        
+        {notes.length === 0 && (
+            <div class="text-center py-12">
+                <p class="text-secondary">{t('notes.no_notes')}</p>
+            </div>
+        )}
+    </main>
+</Layout>

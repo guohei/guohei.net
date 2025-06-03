@@ -12,23 +12,29 @@ function isRootPage() {
 }
 ---
 
-<nav class={url.toString().includes('/posts/') ? 'hidden' : ''}>
-    <a
+<nav class={`mb-8 ${url.toString().includes('/posts/') ? 'hidden' : ''}`}>
+    <div class="flex flex-wrap gap-6 items-center">
+        <a
             rel="prefetch"
             href={path('/')}
-            class="panda-link mr-4 animated hover:no-underline"
-            class:list={isRootPage() ? 'active' : ''}>{t('nav.posts')}</a
-    >
-    {
-        items.map((item) => {
-            return (
+            class="nav-link"
+            class:list={isRootPage() ? 'active' : ''}
+        >
+            {t('nav.posts')}
+        </a>
+        {
+            items.map((item) => {
+                return (
                     <a
-                            rel="prefetch"
-                            href={item.url}
-                            class="panda-link mr-4 animated hover:no-underline"
-                            class:list={url.toString().includes(item.url) ? 'active' : ''}
-                    >{item.title}</a>
-            )
-        })
-    }
+                        rel="prefetch"
+                        href={item.url}
+                        class="nav-link"
+                        class:list={url.toString().includes(item.url) ? 'active' : ''}
+                    >
+                        {t(item.titleKey)}
+                    </a>
+                )
+            })
+        }
+    </div>
 </nav>

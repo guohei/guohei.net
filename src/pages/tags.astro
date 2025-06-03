@@ -1,0 +1,56 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { useLocale } from '@utils/locale'
+import { slugifySpace } from '@utils/format'
+
+const { path, t } = useLocale(Astro.url)
+
+// 获取所有文章
+const posts = await Astro.glob('../content/posts/**/*.{md,mdx}')
+
+// 收集所有标签并统计数量
+const tagCounts = {}
+posts.forEach(post => {
+    if (post.frontmatter.tags && !post.frontmatter.draft) {
+        post.frontmatter.tags.forEach(tag => {
+            tagCounts[tag] = (tagCounts[tag] || 0) + 1
+        })
+    }
+})
+
+// 按文章数量排序
+const sortedTags = Object.entries(tagCounts)
+    .sort(([,a], [,b]) => b - a)
+    .map(([tag, count]) => ({ tag, count }))
+
+export const prerender = true
+---
+
+<Layout title={t('tags.all_tags')}>
+    <main class="mt-8">
+        <h1 class="text-2xl sm:text-3xl font-bold text-heading mb-8">{t('tags.all_tags')}</h1>
+        
+        <div class="space-y-2">
+            {sortedTags.map(({ tag, count }) => (
+                <article class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 py-2 hover:bg-gray-50/30 dark:hover:bg-stone-800/30 transition-all duration-200">
+                    <div class="flex-1 min-w-0">
+                        <a href={path(`/tags/${slugifySpace(tag)}/`)} class="panda-link-static text-base font-normal hover:text-primary leading-relaxed">
+                            #{tag}
+                        </a>
+                    </div>
+                    <div class="flex-shrink-0">
+                        <span class="text-sm text-secondary">
+                            {count} {count === 1 ? t('tags.posts_count_single') : t('tags.posts_count')}
+                        </span>
+                    </div>
+                </article>
+            ))}
+        </div>
+        
+        {sortedTags.length === 0 && (
+            <div class="text-center py-12">
+                <p class="text-secondary">{t('tags.no_tags')}</p>
+            </div>
+        )}
+    </main>
+</Layout>

@@ -29,6 +29,9 @@ export function formatDateYMD(dateString: string, locale: string = 'zh') {
     return date.toFormat('yyyy-MM-dd')
 }
 
-export function slugifySpace(old: string) {
+export function slugifySpace(old: string | any) {
+    if (typeof old !== 'string') {
+        return String(old).replace(/\s/g, '-')
+    }
     return old.replace(/\s/g, '-')
 }

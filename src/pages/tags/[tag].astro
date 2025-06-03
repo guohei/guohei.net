@@ -1,29 +1,98 @@
 ---
-import BlogListLayout from '@layouts/BlogListLayout.astro'
-export const prerender = true
+import Layout from '@layouts/Layout.astro'
+import { useLocale } from '@utils/locale'
+import { formatDateMD } from '@utils/format'
+import { slugifySpace } from '@utils/format'
 
 export async function getStaticPaths() {
     const posts = await Astro.glob('../../content/posts/**/*.{md,mdx}')
-    const tags = [
-        ...new Set(
-            posts
-                .filter((i) => i.frontmatter.tags)
-                .map((i) => i.frontmatter.tags)
-                .flat()
-        )
-    ]
-    return tags.map((tag) => {
-        return {
-            params: {
-                tag: tag.replace(/\s/g, '-')
-            },
-            props: {
-                tag
-            }
+    
+    // 收集所有标签
+    const tags = new Set()
+    posts.forEach(post => {
+        if (post.frontmatter.tags && !post.frontmatter.draft) {
+            post.frontmatter.tags.forEach(tag => {
+                tags.add(tag)
+            })
         }
     })
+    
+    // 为每个标签生成路径
+    return Array.from(tags).map(tag => ({
+        params: { tag: slugifySpace(tag) },
+        props: { originalTag: tag }
+    }))
 }
-const { tag } = Astro.props
+
+const { tag } = Astro.params
+const { originalTag } = Astro.props
+const { path, t } = useLocale(Astro.url)
+
+// 获取该标签下的所有文章
+const allPosts = await Astro.glob('../../content/posts/**/*.{md,mdx}')
+const posts = allPosts
+    .filter(post => 
+        !post.frontmatter.draft && 
+        post.frontmatter.tags && 
+        post.frontmatter.tags.includes(originalTag)
+    )
+    .map(post => ({
+        ...post.frontmatter,
+        url: post.file.split('/').pop().replace(/\.mdx?$/, '') + '/'
+    }))
+    .sort((a, b) => new Date(b.pubDate) - new Date(a.pubDate))
+
+function getTitle(post) {
+    return post.title
+}
+
+export const prerender = true
 ---
 
-<BlogListLayout tag={tag} category="" />
+<Layout title={`标签: ${originalTag}`}>
+    <main class="mt-8">
+        <div class="mb-8">
+            <nav class="text-sm text-secondary mb-4">
+                <a href={path('/')} class="panda-link hover:text-primary transition-colors">{t('nav.posts')}</a>
+                <span class="mx-2 opacity-50">/</span>
+                <a href={path('/tags/')} class="panda-link hover:text-primary transition-colors">{t('nav.tags')}</a>
+                <span class="mx-2 opacity-50">/</span>
+                <span class="text-heading font-medium">#{originalTag}</span>
+            </nav>
+
+            <h1 class="text-2xl sm:text-3xl font-bold text-heading">
+                {t('nav.tags')}: #{originalTag}
+            </h1>
+            <p class="text-secondary mt-2">
+                {posts.length === 1
+                    ? `1 ${t('tags.posts_count_single')}`
+                    : `${posts.length} ${t('tags.posts_count')}`
+                }
+            </p>
+        </div>
+        
+        <div class="space-y-2">
+            {posts.map((post) => (
+                <article class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 py-2 hover:bg-gray-50/30 dark:hover:bg-stone-800/30 transition-all duration-200">
+                    <time class="text-sm text-secondary font-normal flex-shrink-0 sm:w-16">
+                        {formatDateMD(post.pubDate)}
+                    </time>
+                    <div class="flex-1 min-w-0">
+                        <a rel="prefetch-intent" href={path(`/posts/${post.url}`)} class="panda-link-static text-base font-normal hover:text-primary leading-relaxed">
+                            {getTitle(post)}
+                        </a>
+                    </div>
+                </article>
+            ))}
+        </div>
+        
+        {posts.length === 0 && (
+            <div class="text-center py-12">
+                <p class="text-secondary">{t('tags.no_posts')}</p>
+                <a href={path('/tags/')} class="text-primary hover:underline mt-2 inline-block">
+                    {t('tags.view_all_tags')}
+                </a>
+            </div>
+        )}
+    </main>
+</Layout>

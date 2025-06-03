@@ -1,9 +1,9 @@
 ---
-title: "2025年我的默认应用"
-description: "2025年默认应用"
+title: 2024年我的默认应用
+description: 2024年默认应用
 pubDate: 2024-12-27
-tags: ['apps', '2024']
-categories: ['tech']
+tags: [apps, 2024]
+category: 技术
 ---
 下面是我2024年使用过的默认应用。（2025年更新）
 

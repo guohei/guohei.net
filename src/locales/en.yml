@@ -1,13 +1,18 @@
 nav:
     posts: posts
     recent: recent
+    about: about
+    now: now
+    notes: notes
+    tags: tags
 footer:
     home: home
-    rss: rss
+    rss: RSS
     timeline: timeline
     collection: collection
     drafts: drafts
-    contact: contact
+    contact: Contact
+    github: GitHub
     built-with: Built with
     inspired-by: Inspired by
 post:
@@ -21,4 +26,23 @@ message:
 pagination:
     previous: Previous
     next: Next
+
+tags:
+    all_tags: All Tags
+    posts_count: posts
+    posts_count_single: post
+    no_posts: No posts under this tag
+    view_all_tags: View all tags
+    no_tags: No tags available
+
+notes:
+    no_notes: No notes available
+
+codeblock:
+    lines: lines
+    collapse: Collapse
+    expand: Expand
+    copy: Copy
+    copied: Copied
+    auto_collapsed: Code is too long, auto-collapsed
 

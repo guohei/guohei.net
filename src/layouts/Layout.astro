@@ -1,5 +1,6 @@
 ---
 import '../styles/index.css'
+import '../styles/content.css'
 import Header from './Header.astro'
 import Navbar from './Navbar.astro'
 import Footer from './Footer.astro'
@@ -24,20 +25,44 @@ const fullTitle = `${title} - ${defaultTitle}`
 ---
 
 <!doctype html>
-<html lang={locale} class="mx-4">
+<html lang={locale}>
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content={description} />
+        <meta name="keywords" content={PandaConfig.seo?.keywords?.join(', ') || ''} />
+        <meta name="author" content={PandaConfig.author?.name || ''} />
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={Astro.url} />
+        <meta property="og:title" content={fullTitle} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={new URL(PandaConfig.seo?.ogImage || '/favicon.ico', Astro.url)} />
+        <meta property="og:site_name" content={PandaConfig.title} />
+
+        <!-- Twitter -->
+        <meta property="twitter:card" content={PandaConfig.seo?.twitterCard || 'summary'} />
+        <meta property="twitter:url" content={Astro.url} />
+        <meta property="twitter:title" content={fullTitle} />
+        <meta property="twitter:description" content={description} />
+        <meta property="twitter:image" content={new URL(PandaConfig.seo?.ogImage || '/favicon.ico', Astro.url)} />
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="canonical" href={Astro.url} />
+
         <title>{fullTitle}</title>
     </head>
-    <body class="max-width dark:bg-stone-700">
-        <Header />
-        { navbar && <Navbar />}
-        <main >
-            <slot />
-        </main>
-        <Footer />
+    <body class="dark:bg-stone-700">
+        <div class="max-width">
+            <Header />
+            { navbar && <Navbar />}
+            <main>
+                <slot />
+            </main>
+            <Footer />
+        </div>
     </body>
 </html>

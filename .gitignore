@@ -29,3 +29,25 @@ astro_tmp_pages_*
 
 # vercel
 .vercel
+
+# cloudflare
+.dev.vars
+wrangler.toml.bak
+
+# other build outputs
+.output/
+.netlify/
+
+# editor files
+.vscode/
+*.swp
+*.swo
+*~
+
+# temporary files
+*.tmp
+*.temp
+
+# coverage
+coverage/
+.nyc_output

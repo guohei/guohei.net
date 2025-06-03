@@ -1,0 +1,58 @@
+---
+import Layout from '@layouts/Layout.astro'
+import { useLocale } from '@utils/locale'
+import { formatDateYMD } from '@utils/format'
+
+export async function getStaticPaths() {
+    const notes = await Astro.glob('../../content/notes/**/*.{md,mdx}')
+    
+    return notes.map(note => ({
+        params: { 
+            slug: note.file.split('/').pop().replace(/\.mdx?$/, '')
+        },
+        props: { note }
+    }))
+}
+
+const { note } = Astro.props
+const { path, t } = useLocale(Astro.url)
+const { Content, frontmatter: FrontMatter } = note
+
+function getTitle() {
+    return FrontMatter.title
+}
+
+export const prerender = true
+---
+
+<Layout title={getTitle()}>
+    <main class="mt-8">
+        <div class="mb-8">
+            <nav class="text-sm text-secondary mb-4">
+                <a href={path('/')} class="panda-link hover:text-primary transition-colors">{t('nav.posts')}</a>
+                <span class="mx-2 opacity-50">/</span>
+                <a href={path('/notes/')} class="panda-link hover:text-primary transition-colors">{t('nav.notes')}</a>
+                <span class="mx-2 opacity-50">/</span>
+                <span class="text-heading font-medium">{getTitle()}</span>
+            </nav>
+            
+            <h1 class="text-2xl sm:text-3xl font-bold text-heading mb-4">
+                {getTitle()}
+            </h1>
+            
+            <div class="flex flex-wrap items-center gap-2 text-sm text-secondary">
+                <time>{t('post.post_at')} {formatDateYMD(FrontMatter.pubDate)}</time>
+                {FrontMatter.category && (
+                    <>
+                        <span class="mx-1">•</span>
+                        <span>{t('categories.' + FrontMatter.category)}</span>
+                    </>
+                )}
+            </div>
+        </div>
+        
+        <article class="prose dark:prose-invert prose-stone mt-6">
+            <Content />
+        </article>
+    </main>
+</Layout>

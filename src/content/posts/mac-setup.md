@@ -1,9 +1,9 @@
 ---
-title: "New Mac Setup"
-description: "配置新的Mac"
+title: New Mac Setup
+description: 记录下配置新的Mac过程
 pubDate: 2025-04-21
-tags: ['mac', 'setup']
-categories: ['tech']
+tags: [mac, setup, apps]
+category: 技术
 ---
 Here’s everything I use on a Mac.
 ## Todos
@@ -269,5 +269,35 @@ Run Windows, Linux and other virtual machines.
 - [Zen Browser](https://zen-browser.app). Might be better than Firefox. Plugins associated with Firefox should be synced.
 - [ZeroTier](https://www.zerotier.com/) 🆓
 
+## macOS Tips
+
+```shell
+sudo xattr -r -d com.apple.quarantine </File/To/Path>
+```
+### Delete system file
+
+```shell
+# Disbale SIP (command + r)
+csrutil disable
+csrutil authenticated-root disable
+
+# Mount '/' as write
+sudo mount -uw /
+
+# Do something
+sudo cd "/Volumes/$(ls -1 /Volumes|head -n1)"
+sudo rm -rf /System/Applications/TV.app
+sudo rm -rf /System/Applications/News.app
+sudo rm -rf /System/Applications/Home.app
+sudo rm -rf /System/Applications/Books.app
+sudo rm -rf /System/Applications/Chess.app
+sudo rm -rf /System/Applications/Podcasts.app
+sudo rm -rf /System/Applications/Stocks.app
+sudo rm -rf /System/Applications/Music.app
+
+# Enable SIP
+csrutil enable
+csrutil authenticated-root enable
+```
 
 via [Guohei's default-apps](https://github.com/guohei/default-apps)
